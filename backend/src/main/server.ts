@@ -1,12 +1,24 @@
-import { ApolloServer } from '@apollo/server'
-import { startStandaloneServer } from '@apollo/server/standalone'
+import { ApolloServer, gql } from 'apollo-server-express'
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core'
+import http from 'http'
+import express from 'express'
+import cors from 'cors'
 import { adapterResolver } from '../helpers/adapterResolver'
 import { makeFindAllShortLinksResolver } from './factories/findAllShortLinksResolver'
 import { makeFindShortLinkByIdResolver } from './factories/findShortLinkByIdResolver'
 import { makeShortLinkResolver } from './factories/shortLinkResolver'
 import { makeGetUrlByIdResolver } from './factories/urlByIdResolver'
 
-const typeDefs = `#graphql
+const app = express()
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(';') ?? '*'
+app.use(cors({ origin: allowedOrigins }))
+
+app.use(express.json())
+
+const httpServer = http.createServer(app)
+
+const typeDefs = gql`#graphql
   type ShortLinkDetails {
     short: String!
     url: String!
@@ -40,16 +52,15 @@ class App {
   static start = async (): Promise<void> => {
     const server = new ApolloServer({
       typeDefs,
-      resolvers
+      resolvers,
+      plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
     })
 
-    const port = 5555
-    const { url } = await startStandaloneServer(server, {
-      listen: { port }
-    })
-
-    console.log(`Server ready at ${url}`)
+    await server.start()
+    server.applyMiddleware({ app })
   }
 }
 
-App.start().catch(console.error)
+App.start().then(() => console.log('Apollo Server started')).catch(console.error)
+
+export default httpServer
