@@ -9,6 +9,7 @@ import {
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
 function createApolloClient() {
+  console.log({API: process.env.NEXT_PUBLIC_BACKEND_API})
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({ uri: process.env.NEXT_PUBLIC_BACKEND_API }),
