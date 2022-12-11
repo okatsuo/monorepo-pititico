@@ -5,11 +5,11 @@ import { Shortener } from '../components/shortener';
 
 const Home: NextPage = () => {
   return (
-    <span style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100vh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100vh' }}>
       <Navbar />
       <Shortener />
       <Footer />
-    </span>
+    </div>
   )
 }
 

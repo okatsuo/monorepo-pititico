@@ -522,6 +522,13 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@ctrl/react-adsense@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@ctrl/react-adsense/-/react-adsense-1.6.1.tgz#85d47dc040b8f495f1e788ee22e59fdce769fcb8"
+  integrity sha512-pa8/rl1fWzufBjJlTaAFqc0Y7f87RYQJscxs23ZxMv7aqR4nfnUkDK5HwF26dMnrR8sMXFg2OVni9Tr6XgRt7A==
+  dependencies:
+    tslib "^2.4.1"
+
 "@formatjs/ecma402-abstract@1.14.3":
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.14.3.tgz#6428f243538a11126180d121ce8d4b2f17465738"

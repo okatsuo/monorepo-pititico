@@ -4,11 +4,9 @@ import { GoogleAdsenseContainer } from './adSense';
 export const Footer = () => {
   return (
     <NextUiFooter>
-      <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-        {/* <p style={{ background: 'lightgrey', width: '50%', height: '50px' }}></p> */}
+      <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minWidth: '320px' }}>
         <GoogleAdsenseContainer />
       </span>
-
     </NextUiFooter>
   )
 }
