@@ -20,9 +20,11 @@ const ShortId = () => {
 
 
   if (data) {
-    const shortId = data.urlById
+    const originalUrl = data.urlById
 
-    router.push(shortId)
+    const hasHttps = originalUrl.includes('https')
+
+    router.push(hasHttps ? originalUrl : `https://${originalUrl}`)
   }
 
 
