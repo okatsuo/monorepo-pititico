@@ -3,6 +3,7 @@ import { Button, Container, FormElement, Input, Link, Loading } from '@nextui-or
 import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
 import { CreateShortLinkMutationDocument } from '../../generated/graphql/graphql';
+import { useWindowSize } from '../hooks/windowsSize';
 
 const exampleLink = 'https://google.com'
 
@@ -14,6 +15,7 @@ export const Shortener = () => {
   const [url, setUrl] = useState<string>('')
   const [urlError, setUrlError] = useState<boolean>(false)
   const [createShortLink, { loading }] = useMutation(CreateShortLinkMutationDocument)
+  const { width: screenWidth } = useWindowSize()
 
   const handleClickExampleLink = () => setUrl(exampleLink)
 
@@ -40,7 +42,9 @@ export const Shortener = () => {
           <form style={{ display: 'flex', gap: 8 }} onSubmit={handleSubmit}>
             <Input
               labelPlaceholder='Sua URL'
-              width='300px'
+              width={screenWidth
+                ? screenWidth < 500 ? 'auto' : '300px'
+                : 'auto'}
               value={url}
               status={urlError ? 'error' : 'default'}
               onChange={handleUserType}
