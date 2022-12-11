@@ -47,7 +47,7 @@ const ShortIdDetails = () => {
                 <Link block isExternal href={`${origin}/${shortUrlDetails.short}`} target="_blank"><Text b color="inherit">{`${origin}/${shortUrlDetails.short}`}</Text></Link>
                 <Popover isBordered>
                   <Popover.Trigger>
-                    <Link onClick={() => copyToClipboard(shortUrlDetails.url)}><Text color="inherit">Copiar link original</Text></Link>
+                    <Link css={{ mt: '$2' }} onClick={() => copyToClipboard(shortUrlDetails.url)}><Text color="inherit">Copiar link original</Text></Link>
                   </Popover.Trigger>
                   <Popover.Content>
                     <Text css={{ p: "$2" }}>Link copiado!</Text>
