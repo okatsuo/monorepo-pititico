@@ -6,7 +6,7 @@ interface IRequest {
   id: string
 }
 
-export class FindShortLinkByIdResolver implements IResolvers {
+export class GetShortUrlDetails implements IResolvers {
   constructor (
     private readonly shortLinksRepository: ShortLinksRepository
   ) {}
@@ -16,6 +16,6 @@ export class FindShortLinkByIdResolver implements IResolvers {
 
     if (!shortLink) throw new Error('Short link not found')
 
-    return await this.shortLinksRepository.updateClicks(id)
+    return shortLink
   }
 }

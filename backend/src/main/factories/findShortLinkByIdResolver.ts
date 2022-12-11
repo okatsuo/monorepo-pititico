@@ -1,7 +1,7 @@
 import { ShortLinksRepository } from '../../database/shortLinksRepository'
-import { FindShortLinkByIdResolver } from '../../resolvers/query/redirectById'
+import { GetShortUrlDetails } from '../../resolvers/query/GetShortUrlDetails'
 
-export const makeFindShortLinkByIdResolver = (): FindShortLinkByIdResolver => {
+export const makeFindShortLinkByIdResolver = (): GetShortUrlDetails => {
   const shortLinksRepository = new ShortLinksRepository()
-  return new FindShortLinkByIdResolver(shortLinksRepository)
+  return new GetShortUrlDetails(shortLinksRepository)
 }

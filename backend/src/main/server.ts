@@ -4,9 +4,10 @@ import { adapterResolver } from '../helpers/adapterResolver'
 import { makeFindAllShortLinksResolver } from './factories/findAllShortLinksResolver'
 import { makeFindShortLinkByIdResolver } from './factories/findShortLinkByIdResolver'
 import { makeShortLinkResolver } from './factories/shortLinkResolver'
+import { makeGetUrlByIdResolver } from './factories/urlByIdResolver'
 
 const typeDefs = `#graphql
-  type ShortLink {
+  type ShortLinkDetails {
     short: String!
     url: String!
     clicks: Int!
@@ -14,22 +15,24 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    short(id: String!): ShortLink
-    findAll: [ShortLink]!
+    urlById(id: String!): String!
+    shortUrlDetails(id: String!): ShortLinkDetails!
+    findAll: [ShortLinkDetails]!
   }
 
   type Mutation {
-    short(url: String!): ShortLink!
+    shortener(url: String!): ShortLinkDetails!
   }
 `
 
 const resolvers = {
   Query: {
-    short: adapterResolver(makeFindShortLinkByIdResolver()),
+    urlById: adapterResolver(makeGetUrlByIdResolver()),
+    shortUrlDetails: adapterResolver(makeFindShortLinkByIdResolver()),
     findAll: adapterResolver(makeFindAllShortLinksResolver())
   },
   Mutation: {
-    short: adapterResolver(makeShortLinkResolver())
+    shortener: adapterResolver(makeShortLinkResolver())
   }
 }
 
