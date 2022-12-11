@@ -14,7 +14,12 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="pt-BR">
-        <Head>{CssBaseline.flush()}</Head>
+        <Head>
+          {CssBaseline.flush()}
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5131740489376360"
+            crossOrigin="anonymous">
+          </script>
+        </Head>
         <body>
           <Main />
           <NextScript />
