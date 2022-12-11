@@ -1,0 +1,3 @@
+query GetUrlById($id: String!) {
+  urlById(id: $id)
+}

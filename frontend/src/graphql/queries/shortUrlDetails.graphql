@@ -1,0 +1,8 @@
+query ShortUrlDetailsQuery ($id: String!) {
+  shortUrlDetails(id: $id) {
+    url
+    clicks
+    short
+    createdAt
+  }
+}

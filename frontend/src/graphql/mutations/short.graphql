@@ -1,0 +1,8 @@
+mutation CreateShortLinkMutation ($url: String!) {
+  shortener(url: $url) {
+    clicks
+    short
+    url
+    createdAt
+  }
+}
